@@ -789,5 +789,6 @@ return {
         ['gfaydark'] = {
             ['Feir`Dal Forge'] = '-245 61 118',
         },
-    }
+    },
+    ['Tabs'] = {'Baking','Blacksmithing','Brewing','Fletching','Jewelry Making','Pottery','Tailoring','Alchemy'},
 }

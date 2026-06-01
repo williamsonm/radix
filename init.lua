@@ -305,14 +305,13 @@ local function popStyles()
     ImGui.PopStyleVar(1)
 end
 
-local tradeskills = {'Baking','Blacksmithing','Brewing','Fletching','Jewelry Making','Pottery','Tailoring','Alchemy'}
 local function radixGUI()
     ImGui.SetNextWindowSize(ImVec2(800,500), ImGuiCond.FirstUseEver)
     pushStyle()
     openGUI, shouldDrawGUI = ImGui.Begin('Radix ('.. meta.version ..')###radixgui', openGUI, ImGuiWindowFlags.HorizontalScrollbar)
     if shouldDrawGUI then
         if ImGui.BeginTabBar('##TradeskillTabs') then
-            for _,tradeskill in ipairs(tradeskills) do
+            for _,tradeskill in ipairs(recipes.Tabs) do
                 if tradeskill ~= 'Alchemy' or mq.TLO.Me.Class.ShortName() == 'SHM' then
                     local currentSkill = (tradeskill == 'Radix' and 300) or mq.TLO.Me.Skill(tradeskill)() or 0
                     ImGui.PushStyleColor(ImGuiCol.Text, currentSkill == 300 and 0 or 1, currentSkill == 300 and 1 or 0, 0, 1)
