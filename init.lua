@@ -572,11 +572,19 @@ local function request()
 end
 
 local function waitForCursor(time)
-    mq.delay(time or 1000, function() return mq.TLO.Cursor() end)
+    mq.delay(time or 1000, function() return mq.TLO.Cursor() == nil end)
 end
 
 local function waitForEmptyCursor(time)
     mq.delay(time or 1000, function() return not mq.TLO.Cursor() end)
+end
+
+local function clearCursorUntilDone()
+    local itemOnCursor = mq.TLO.Cursor()
+    while mq.TLO.Cursor() do
+        mq.cmd('/autoinv')
+        mq.delay(1000)
+    end
 end
 
 local function clearCursor(num)
@@ -590,7 +598,7 @@ local function clearCursor(num)
             else
                 mq.cmd('/autoinv')
             end
-            waitForEmptyCursor(100)
+            waitForEmptyCursor(200)
         end
     end
 end
@@ -708,7 +716,7 @@ local function craftInExperimental(pack, packIdx)
         for i,mat in ipairs(selectedRecipe.Materials) do
             if mq.TLO.Cursor() then clearCursor() end
             mq.cmdf('/nomodkey /ctrlkey /itemnotify "%s" leftmouseup', mat)
-            waitForCursor()
+            waitForCursor(500)
             if (mq.TLO.Cursor.Stack() or 1) > 1 then
                 clearCursor()
                 mq.cmdf('/nomodkey /ctrlkey /itemnotify "%s" leftmouseup', mat)
@@ -727,8 +735,9 @@ local function craftInExperimental(pack, packIdx)
 
         -- Perform the combine
         mq.cmdf('/combine %s', pack)
-        waitForCursor()
-        clearCursor()
+        mq.delay(500)
+        waitForCursor(500)
+        clearCursorUntilDone()
         crafting.NumMade = crafting.NumMade + 1
     end
 end
