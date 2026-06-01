@@ -7,7 +7,15 @@ local meta = {version='0.3',name='radix'}
 local openGUI, shouldDrawGUI = true, true
 
 local ingredientsArray = {}
-local invSlotContainers = {['Fletching Kit'] = true, ['Feir`Dal Fletching Kit'] = true, ['Jeweler\'s Kit'] = true, ['Mixing Bowl'] = true, ['Essence Fusion Chamber'] = true, ['Medicine Bag'] = true}
+local invSlotContainers = {
+    ['Fletching Kit'] = true,
+    ['Feir`Dal Fletching Kit'] = true,
+    ['Jeweler\'s Kit'] = true,
+    ['Mixing Bowl'] = true,
+    ['Essence Fusion Chamber'] = true,
+    ['Medicine Bag'] = true,
+    ['Mortar and Pestle'] = true,
+}
 
 local ingredientFilter = ''
 local filteredIngredients = {}
