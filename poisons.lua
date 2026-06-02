@@ -1,5 +1,12 @@
 local recipes = {
     {
+        Recipe='Hate of the Shissar',
+        Trivial=260,
+        Materials={'Hate of the Shissar IX','Hate of the Shissar XI'},
+        Container='Mortar and Pestle',
+        Tradeskill='Make Poison',
+    },
+    {
         Recipe='Atrophic Sap',
         Trivial=98,
         Materials={'Alocasia Root','Alocasia Root','Lined Poison Vial','Constrict Suspension'},
@@ -17,7 +24,7 @@ local recipes = {
     {
         Recipe='Nigriventer Venom',
         Trivial=288,
-        Materials={'Spider\'s Bite VIII','Spider\'s Bite IX','Spider\'s Bite X'},
+        Materials={'Spider\'s Bite VIII','Spider\'s Bite IX','Spider\'s Bite X','Spider\'s Bite XI'},
         Container='Mortar and Pestle',
         Tradeskill='Make Poison',
     },
@@ -38,7 +45,7 @@ local recipes = {
     {
         Recipe='Gormar Venom',
         Trivial=295,
-        Materials={'Scorpion\'s Agony VIII','Scorpion\'s Agony IX','Scorpion\'s Agony X'},
+        Materials={'Scorpion\'s Agony VIII','Scorpion\'s Agony IX','Scorpion\'s Agony X','Scorpion\'s Agony XI'},
         Container='Mortar and Pestle',
         Tradeskill='Make Poison',
     },
@@ -102,6 +109,13 @@ local subcombines = {
         Container='Mortar and Pestle',
         Tradeskill='Make Poison',
     },
+    ['Spider\'s Bite XI'] = {
+        Recipe='Spider\'s Bite XI',
+        Trivial=324,
+        Materials={'Refined Grade A Nigriventer Venom','Emulsifier','Etched Poison Vial','Thick Suspension Fluid'},
+        Container='Mortar and Pestle',
+        Tradeskill='Make Poison',
+    },
     -- Gormar Venom
     ['Scorpion\'s Agony VIII'] = {
         Recipe='Scorpion\'s Agony VIII',
@@ -124,6 +138,13 @@ local subcombines = {
         Container='Mortar and Pestle',
         Tradeskill='Make Poison',
     },
+    ['Scorpion\'s Agony XI'] = {
+        Recipe='Scorpion\'s Agony XI',
+        Trivial=335,
+        Materials={'Refined Grade A Gormar Venom','Emulsifier','Etched Poison Vial','Thick Suspension Fluid'},
+        Container='Mortar and Pestle',
+        Tradeskill='Make Poison',
+    },
     -- Mamba Venom
     ['E`CI\'s Lament VIII'] = {
         Recipe='E`CI\'s Lament VIII',
@@ -143,6 +164,21 @@ local subcombines = {
         Recipe='E`CI\'s Lament X',
         Trivial=260,
         Materials={'Concentrated Grade AA Mamba Venom','E`CI Emulsifier','Fine Sealed Poison Vial','Suspension Fluid'},
+        Container='Mortar and Pestle',
+        Tradeskill='Make Poison',
+    },
+    -- Hate of the Shissar
+    ['Hate of the Shissar IX'] = {
+        Recipe='Hate of the Shissar IX',
+        Trivial=216,
+        Materials={'Concentrated Grade A Mamba Venom','Innoruuk Emulsifier','Refined Sealed Poison Vial','Suspension Fluid'},
+        Container='Mortar and Pestle',
+        Tradeskill='Make Poison',
+    },
+    ['Hate of the Shissar XI'] = {
+        Recipe='Hate of the Shissar XI',
+        Trivial=260,
+        Materials={'Refined Grade A Mamba Venom','Innoruuk Emulsifier','Etched Sealed Poison Vial','Suspension Fluid'},
         Container='Mortar and Pestle',
         Tradeskill='Make Poison',
     },
@@ -287,15 +323,74 @@ local materials = {
     ['Sealed Poison Vial']={Location='Toxicologist Huey',SourceType='Vendor'},
     ['Constrict Suspension']={Location='Toxicologist Huey',SourceType='Vendor'},
     ['Emulsifier']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['E`CI Emulsifier']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Innoruuk Emulsifier']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Etched Sealed Poison Vial']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Etched Poison Vial']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Refined Grade A Mamba Venom']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Refined Grade A Gormar Venom']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Refined Grade A Nigriventer Venom']={Location='Toxicologist Huey',SourceType='Vendor'},
 
-    ['Refined Poison Vial']={Location='Toxicologist Huey',SourceType='Vendor'},
     ['Unadorned Poison Vial']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Refined Poison Vial']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Fine Poison Vial']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Unadorned Sealed Poison Vial']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Refined Sealed Poison Vial']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Fine Sealed Poison Vial']={Location='Toxicologist Huey',SourceType='Vendor'},
 
     ['Thick Suspension Fluid']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Suspension Fluid']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Ethereal Suspension Fluid']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Celestial Suspension Fluid']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Suffusing Suspension Fluid']={Location='Toxicologist Huey',SourceType='Vendor'},
 
-    ['Concentrated Grade B Nigriventer Venom']={Location='Dropped',SourceType='Dropped'},
-    ['Concentrated Grade A Nigriventer Venom']={Location='Dropped',SourceType='Dropped'},
-    ['Concentrated Grade AA Nigriventer Venom']={Location='Dropped',SourceType='Dropped'},
+    -- ['Concentrated Grade B Nigriventer Venom']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade A Nigriventer Venom']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade AA Nigriventer Venom']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade B Gormar Venom']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade A Gormar Venom']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade AA Gormar Venom']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade B Mamba Venom']={Location='Toxicologist Huey',SourceType='Vendor'},
+    ['Concentrated Grade A Mamba Venom']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade AA Mamba Venom']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade B Taipan Venom']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade A Taipan Venom']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade AA Taipan Venom']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade B Choresine Sample']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade A Choresine Sample']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade AA Choresine Sample']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade B Oleander Extract']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade A Oleander Extract']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade AA Oleander Extract']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade B Caladium Extract']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade A Caladium Extract']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade AA Caladium Extract']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade B Laburnum Extract']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade A Laburnum Extract']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade AA Laburnum Extract']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade B Larkspur Extract']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade A Larkspur Extract']={Location='Toxicologist Huey',SourceType='Vendor'},
+    -- ['Concentrated Grade AA Larkspur Extract']={Location='Toxicologist Huey',SourceType='Vendor'},
+
+    -- fresh larkspur => refined grade A larkspur extract => Messenger's Bane XI (trivial 320)
+    -- fine larkspur => refined grade AA larkspur extract => Messenger's Bane XII (trivial 360)
+    -- quality larkspur => purified grade B larkspur extract => Messenger's Bane XIII (trivial 400)
+
+    -- quality privit => purified grade B privit extract => Archer's Bane XIII (408)
+    -- superior privit => purified grade A privit extract (276) => Archer's Bane XIV (466)
+
+    --[[
+        fresh => fine => quality => superior => pristine => immaculate
+
+        trivial
+        - mamba
+
+        concentrated grade aa laburnum, 296, warlord's bane x
+        refined grade A larkspur, 320, messenger's bane XI
+        refined grade A oleander, 328, myrmidon's sloth xi
+        refined grade A delphinium, 340, monk's bane xi
+        refined grade A privit, 346, archer's bane xi
+    ]]
 }
 
 return {
