@@ -511,15 +511,20 @@ local function buy()
         local mat = recipes.Materials[material]
         if mat and mat.SourceType == 'Vendor' and (not mat.Zone or mq.TLO.Zone.ShortName() == mat.Zone) then
             if not buying.Status then return end
-            mq.cmdf('/mqt %s', mat.Location)
-            if not mq.TLO.Window('MerchantWnd').Open() or mq.TLO.Window('MerchantWnd/MW_MerchantName').Text() ~= mat.Location then
-                if mq.TLO.Window('MerchantWnd').Open() then mq.TLO.Window('MerchantWnd').DoClose() mq.delay(50) mq.cmdf('/mqt %s', mat.Location) end
-                if not goToVendor() then return end
-                if not openVendor() then return end
-                mq.delay(500)
+            local haveCount = mq.TLO.FindItemCount('='..material)()
+            local needCount = buying.Qty * count
+            if haveCount < needCount then
+                -- only navigate to the vendor and buy items if we don't already have enough
+                mq.cmdf('/mqt %s', mat.Location)
+                if not mq.TLO.Window('MerchantWnd').Open() or mq.TLO.Window('MerchantWnd/MW_MerchantName').Text() ~= mat.Location then
+                    if mq.TLO.Window('MerchantWnd').Open() then mq.TLO.Window('MerchantWnd').DoClose() mq.delay(50) mq.cmdf('/mqt %s', mat.Location) end
+                    if not goToVendor() then return end
+                    if not openVendor() then return end
+                    mq.delay(500)
+                end
+                printf('Buying %s %s(s)', needCount-haveCount, material)
+                RestockItems({[material]=needCount}, mat.Tool)
             end
-            printf('Buying %s %s(s)', buying.Qty*count, material)
-            RestockItems({[material]=buying.Qty*count}, mat.Tool)
         end
     end
     if mq.TLO.Window('MerchantWnd').Open() then mq.TLO.Window('MerchantWnd').DoClose() end
