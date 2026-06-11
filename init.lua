@@ -1,6 +1,8 @@
 local mq = require 'mq'
 require 'ImGui'
-local recipes = require 'recipes'
+local recipeList = require("recipes")
+local selectedRecipes = "Radix" -- default to radix
+local recipes = recipeList[selectedRecipes]
 
 local meta = {version='0.3',name='radix'}
 
@@ -318,6 +320,18 @@ local function radixGUI()
     pushStyle()
     openGUI, shouldDrawGUI = ImGui.Begin('Radix ('.. meta.version ..')###radixgui', openGUI, ImGuiWindowFlags.HorizontalScrollbar)
     if shouldDrawGUI then
+        ImGui.Text("Recipe List: ")
+        ImGui.SameLine()
+        ImGui.SetNextItemWidth(160)
+        if ImGui.BeginCombo("##RecipeListCombo", selectedRecipes) then
+            for categoryName, categoryRecipes in pairs(recipeList) do
+                if ImGui.Selectable(categoryName, selectedRecipes == categoryName) then
+                    selectedRecipes = categoryName
+                    recipes = recipeList[categoryName]
+                end
+            end
+            ImGui.EndCombo()
+        end
         if ImGui.BeginTabBar('##TradeskillTabs') then
             for _,tradeskill in ipairs(recipes.Tabs) do
                 if tradeskill ~= 'Alchemy' or mq.TLO.Me.Class.ShortName() == 'SHM' then
