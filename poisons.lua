@@ -388,8 +388,13 @@ local materials = {
         concentrated grade aa laburnum, 296, warlord's bane x
         refined grade A larkspur, 320, messenger's bane XI
         refined grade A oleander, 328, myrmidon's sloth xi
+        Refined Grade A Caladium Extract, 334, Fighter's Bane XI
         refined grade A delphinium, 340, monk's bane xi
         refined grade A privit, 346, archer's bane xi
+
+        Refined Grade A Nigriventer Venom, 324, Spider's Bite XI, etched poison vial
+        Refined Grade AA Nigriventer Venom, 364, Spider's Bite XII
+        Purified Grade B Nigriventer Venom, 404, Spider's Bite XIII
     ]]
 }
 
